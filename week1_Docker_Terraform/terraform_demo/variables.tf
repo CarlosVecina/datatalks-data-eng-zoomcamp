@@ -1,5 +1,5 @@
 variable "credentials" {
-  default = "./keys/my_creds.jso"
+  default = "./keys/my_creds.json"
 }
 
 variable "location" {
