@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "data-eng-bootcamp"
+version = "0.1.0"
+description = ""
+authors = ["Carlos Vecina"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+polars = "^0.20.4"
+SQLAlchemy = "^2.0.25"
+pydantic = "^2.5.3"
+pandas = "^2.1.4"
+psycopg2 = "^2.9.9"
+pyarrow = "^14.0.2"
+six = "^1.16.0"
+nbconvert = "^7.14.2"
+pydantic-settings = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
