@@ -1,5 +1,6 @@
 *.json
 .terraform*
 terraform.*
-.terraform/*
 *.DS_Store
+.env
+keys/*
