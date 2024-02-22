@@ -1,6 +1,0 @@
-*.json
-.terraform*
-terraform.*
-*.DS_Store
-.env
-keys/*
