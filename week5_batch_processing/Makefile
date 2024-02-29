@@ -4,7 +4,8 @@ SSH_ZONE := --zone "us-west2-a"
 SSH_INSTANCE := "my-instance"
 SSH_PROJECT := --project "concise-quarter-411516"
 SSH_OPTIONS := $(SSH_ZONE) $(SSH_INSTANCE) $(SSH_PROJECT)
-SSH_COMMAND := gcloud compute ssh $(SSH_OPTIONS) --command
+SSH_OPEN := gcloud compute ssh $(SSH_OPTIONS)
+SSH_COMMAND := $(SSH_OPEN) --command
 
 all: install-java install-spark
 
@@ -19,6 +20,13 @@ install-java:
 install-spark:
 	$(SSH_COMMAND) 'wget https://archive.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz && \
 		tar xzfv spark-3.3.2-bin-hadoop3.tgz && \
-		export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3" && \
+		export SPARK_HOME="${HOME}/spark-3.3.2-bin-hadoop3" && \
 		export PATH="${SPARK_HOME}/bin:${PATH}" && \
-		rm spark-3.3.2-bin-hadoop3.tgz'
+		rm spark-3.3.2-bin-hadoop3.tgz && \
+		spark-shell && \
+		val data = 1 to 10000 && \
+		val distData = sc.parallelize(data) && \
+		distData.filter(_ < 10).collect()'
+
+open-ssh:
+	$(SSH_OPEN)
