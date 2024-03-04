@@ -20,6 +20,8 @@ install-java:
 install-spark:
 	$(SSH_COMMAND) 'wget https://archive.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz && \
 		tar xzfv spark-3.3.2-bin-hadoop3.tgz && \
+		export JAVA_HOME="${HOME}/jdk-11.0.2" && \
+		export PATH="${JAVA_HOME}/bin:${PATH}" && \
 		export SPARK_HOME="${HOME}/spark-3.3.2-bin-hadoop3" && \
 		export PATH="${SPARK_HOME}/bin:${PATH}" && \
 		rm spark-3.3.2-bin-hadoop3.tgz && \
@@ -29,4 +31,7 @@ install-spark:
 		distData.filter(_ < 10).collect()'
 
 open-ssh:
-	$(SSH_OPEN)
+	$(SSH_OPEN) 
+
+get_ssh:
+	gcloud compute config-ssh $(SSH_PROJECT)
